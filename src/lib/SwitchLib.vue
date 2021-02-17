@@ -13,7 +13,8 @@ export default {
     console.log(props.value,111);
     
     const toggle = ()=>{
-      context.emit('input', !props.value)
+      context.emit('update:value', !props.value)
+      // this.$emit()
     }
     return {toggle}
   } 

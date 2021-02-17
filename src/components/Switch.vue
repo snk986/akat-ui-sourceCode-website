@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SwitchLib :value="checked" @input="checked=$event"/>
+    <SwitchLib v-model:value="checked"/>
   </div>
 </template>
 <script lang="ts">
