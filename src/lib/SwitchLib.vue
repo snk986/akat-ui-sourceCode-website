@@ -39,7 +39,7 @@ export default {
     width: $h2;
     background:white;
     border-radius: $h2 / 2;
-    transition: left 300ms;
+    transition: all 300ms;
   }
   button.checked{
     background: #409eff;
@@ -49,5 +49,11 @@ export default {
   }
   button:focus {
     outline: none;
+  }
+  button:active{
+    > span {width: $h2 + 4px;}
+  }
+  button.checked:active{
+    > span {width: $h2 + 4px; margin-left: -4px;}
   }
 </style>
