@@ -3,7 +3,7 @@
     Button 示例
   </div>
   <h1>示例1</h1>
-  <div>
+  <div class="button-box">
     <Button>按钮</Button>
     <Button theme="button">按钮</Button>
     <Button theme="link">按钮</Button>
@@ -21,3 +21,10 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.button-box {
+  display: inline-flex;  //inline-flex是包裹在一起的元素为一小行(指一行的一小部分)。flex是包裹在一起的元素占一行。inline-block是各个元素占一小行
+  justify-content: center;
+  align-items: center;
+}
+</style>
