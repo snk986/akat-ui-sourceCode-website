@@ -1,6 +1,7 @@
 <template>
-  <div :size="size">
-    <button v-bind="rest">
+    <button v-bind="rest" class="gulu-button"
+      :class="`theme-${theme}`"
+    >
       <slot />
     </button>
   </div>
@@ -14,6 +15,10 @@ export default {
   // 1、props要先声明才能取值，attrs不用先声明。2、propss不包含事件，attrs包含。 3、props支持string以外的类型，attrs只有string类型
   // 4、props没有声明的属性，会自动跑到attrs里
   props:{
+    theme: {
+      type: String,
+      default: 'button',
+    },
   },
   setup(props,context) {
     const {size, ...rest} = context.attrs
