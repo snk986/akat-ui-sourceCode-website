@@ -1,6 +1,6 @@
 <template>
     <button v-bind="rest" class="gulu-button"
-      :class="`theme-${theme}`"
+      :class="`gulu-theme-${theme}`"
     >
       <slot />
     </button>
@@ -26,7 +26,11 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+
+<style lang="scss">
+// UI库的css注意事项
+// 1、不能使用scoped，因为data-v-xxx每次运行可能不同，必须输出稳定不变的class选择器，方便使用者覆盖
+// 2、必须加前缀，.button、.theme-link不行，容易被使用者覆盖；.gulu-button、.gulu-theme-link可以，不容易覆盖
 $h: 32px;
 $border-color: #d9d9d9;
 $color: #333;
@@ -34,7 +38,7 @@ $blue: #40a9ff;
 $radius: 4px;
 .gulu-button {
   box-sizing: border-box;
-  width: $h*2;
+  // width: $h*2;
   height: $h;
   padding: 0 12px;
   cursor: pointer;
