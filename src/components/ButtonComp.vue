@@ -17,7 +17,6 @@ export default {
   components: {Button},
   setup(props) {
     const onClick = () => {
-      console.log('hi');
     }
     return {onClick}
   }
