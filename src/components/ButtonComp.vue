@@ -15,21 +15,43 @@
     <Button>普通按钮</Button>
     <Button size="small">小按钮</Button>
   </div>
-  <div>
+  <div class="button-box">
       <Button theme="link" size="big">大按钮</Button>
       <Button theme="link">普通按钮</Button>
       <Button size="small" theme="link">小按钮</Button>
     </div>
-    <div>
+    <div class="button-box">
       <Button size="big" theme="text">大按钮</Button>
       <Button theme="text">普通按钮</Button>
       <Button size="small" theme="text">小按钮</Button>
     </div>
+    <h1>示例3</h1>
+  <div class="button-box">
+     <Button level="main">主要按钮</Button>
+      <Button>普通按钮</Button>
+      <Button level="danger">危险按钮</Button>
+    </div>
+    <div class="button-box">
+      <Button theme="link" level="main">主要链接按钮</Button>
+      <Button theme="link">普通链接按钮</Button>
+      <Button theme="link" level="danger">危险链接按钮</Button>
+    </div>
+    <div class="button-box">
+      <Button theme="text" level="main">主要文字按钮</Button>
+      <Button theme="text">普通文字按钮</Button>
+      <Button theme="text" level="danger">危险文字按钮</Button>
+    </div>
+    <h1>示例4</h1>
+  <div class="button-box">
+    <Button disabled>禁用按钮</Button>
+    <Button theme="link" disabled>禁用链接按钮</Button>
+    <Button theme="text" disabled>禁用文本按钮</Button>
+  </div>
 </template>
 <script lang="ts">
-import Button from '../lib/Button.vue'
+import Button from '../lib/Button.vue';
 export default {
-  components: {Button},
+  components: { Button },
   setup(props) {
     const onClick = () => {
     }
@@ -39,8 +61,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .button-box {
-  display: inline-flex;  //inline-flex是包裹在一起的元素为一小行(指一行的一小部分)。flex是包裹在一起的元素占一行。inline-block是各个元素占一小行
-  justify-content: center;
+  // display: inline-flex;  //inline-flex是包裹在一起的元素为一小行(指一行的一小部分)。flex是包裹在一起的元素占一行。inline-block是各个元素占一小行
+  display: flex;
+  // justify-content: center;
   align-items: center;
 }
 </style>
