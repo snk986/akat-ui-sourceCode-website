@@ -9,6 +9,12 @@
     <Button theme="link">按钮</Button>
     <Button theme="text">按钮</Button>
   </div>
+  <h1>示例2</h1>
+  <div class="button-box">
+    <Button size="big">大按钮</Button>
+    <Button>普通</Button>
+    <Button size="small">小按钮</Button>
+  </div>
 </template>
 <script lang="ts">
 import Button from '../lib/Button.vue'
