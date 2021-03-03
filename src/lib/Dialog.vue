@@ -1,4 +1,5 @@
 <template>
+<div class="dialog-overlay"></div>
   <div class="dialog-wraper">
     <header>
       标题
@@ -16,6 +17,6 @@
 <script lang="ts">
 import Button from './Button.vue'
 export default {  
-  component: { Button }
+  components: { Button }
 }
 </script>
