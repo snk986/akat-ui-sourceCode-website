@@ -52,6 +52,10 @@
     <Button loading>加载中</Button>
     <Button >加载完毕</Button>
   </div>
+  <h1>示例5</h1>
+  <div class="button-box">
+    <Button @click="onClick">点击按钮</Button>
+  </div>
 </template>
 <script lang="ts">
 import Button from '../lib/Button.vue';
@@ -59,6 +63,7 @@ export default {
   components: { Button },
   setup(props) {
     const onClick = () => {
+      console.log('hi');
     }
     return {onClick}
   }
