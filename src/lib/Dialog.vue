@@ -1,22 +1,24 @@
 <template>
   <template v-if="visible">
-    <div class="gulu-dialog-overlay" @click="clickOnOverlay"></div>
-    <div class="gulu-dialog-wrapper">
-      <div class="gulu-dialog" >
-        <header>
-          标题
-          <span @click="close" class="gulu-dialog-close"></span>
-        </header>
-        <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
-        </main>
-        <footer>
-          <Button level="main" @click="confirm">确定</Button>
-          <Button @click="cancel">取消</Button>
-        </footer>
+    <!-- 把dialog组件用内置Teleport组件直接挂到body下面，相当于传送门，防止dialog因为css层级关系的bug被覆盖 -->
+    <Teleport to="body">
+      <div class="gulu-dialog-overlay" @click="clickOnOverlay"></div>
+      <div class="gulu-dialog-wrapper">
+        <div class="gulu-dialog" >
+          <header>
+            <slot name="title"/>
+            <span @click="close" class="gulu-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content"/>
+          </main>
+          <footer>
+            <Button level="main" @click="confirm">确定</Button>
+            <Button @click="cancel">取消</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 <script lang="ts">
@@ -55,9 +57,8 @@ export default {
       }
     }
     const cancel = () => {
-      if(props.cancel && props.cancel() !== false) {
+      props.cancel && props.cancel() 
         close()
-      }
     }
     return { close, clickOnOverlay, confirm, cancel }
   }
@@ -72,6 +73,9 @@ $border-color: #d9d9d9;
   box-shadow: 0 0 3px fade_out(black, 0.5);
   min-width: 15em;
   max-width: 90%;
+  font-size: 20px;
+  // 1em等于自身或者父元素的font-size
+
   &-overlay {
     position: fixed;
     top: 0;
