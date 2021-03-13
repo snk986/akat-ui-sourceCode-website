@@ -26,7 +26,7 @@
     </template>
     </Dialog>
   </div>
-  <h1>示例2</h1>
+  <h1>示例2：一句话打开Dialog</h1>
     <Button @click="showDialog">show</Button>
   <!-- 这两个div演示dialog被层级覆盖bug -->
   <div style="position:relative; z-index:2; width:80%;height:80%;background:red;"></div>
@@ -50,11 +50,12 @@ export default {
       openDialog({
         title:'标题',
         content:'你好',
+        closeOnClickOverlay: true,
         // 这里用confirm1与cancel1是为了区分传递函数和confirm与cancel接收参数的区别，正式版最好写confirm与cancel
-        confirm1: () => {
+        ok: () => {
           console.log('confirm');
         },
-        cancel1: () => {
+        cancel: () => {
           console.log('cancel');
         }
       })
