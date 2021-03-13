@@ -14,8 +14,12 @@
     <div class="gulu-tabs-content">
       <!-- v-for与v-if官方不推荐一起使用 -->
       <!-- <component class="gulu-tabs-content-item" v-for="(c,index) in defaults" v-if="c.props.title === selected" :is="c" :key="index" /> -->
-      <component class="gulu-tabs-content-item" :is="current" />
-      {{current}}
+      <!-- <component class="gulu-tabs-content-item" :is="current" /> -->
+      <component class="gulu-tabs-content-item"
+        :class="{selected: c.props.title === selected}"
+        v-for="(c,index) in defaults" :is="c" :key="index" 
+      />
+      <!-- {{current}} -->
     </div>
   </div>
 </template>
@@ -87,6 +91,12 @@ $border-color: #d9d9d9;
   }
   &-content {
     padding: 8px 0;
+    &-item{
+      display: none;
+      &.selected{
+        display: block;
+      }
+    }
   }
 }
 </style>
