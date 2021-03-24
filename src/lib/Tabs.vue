@@ -85,11 +85,14 @@ export default {
     // onMounted只在第一次渲染执行,所以代码也要放onUpdated里面，
     // 为何onMounted也要放一次这个逻辑的代码：不放的话第一次加载导航蓝条会直接在第一个导航条，显示不正确，也无法满足导航条放在第二个的需求
     // @ts-ignore
-    onMounted(navRender)  //第一次执行
+    // onMounted(navRender)  //第一次执行
     // @ts-ignore
-    onUpdated(navRender)  //后面执行 可以合并成watchEffect
-    // @ts-ignore 这个优化vue3升级后出现bug
+    // onUpdated(navRender)  //后面执行 可以合并成watchEffect
+    // @ts-ignore 
     // watchEffect(navRender)
+    onMounted(() => {
+      watchEffect(navRender)
+    }) 
     return {
       defaults, titles, current, select, selectedItem, indicator, container
     }
