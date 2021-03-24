@@ -23,7 +23,6 @@ import { inject, Ref } from 'vue'
 </script>
 <style lang="scss" scoped>
   .topnav {
-  background: pink;
   display: flex;
   position: fixed;
   top: 0;
