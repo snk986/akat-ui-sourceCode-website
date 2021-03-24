@@ -1,28 +1,32 @@
 <template>
   <div class="topnav">
-      <div class="logo">LOGO</div>
-      <ul class="menu">
-        <li>菜单1</li>
-        <li>菜单2</li>
-      </ul>
-      <span class="toggleAside" @click="toggleAside"></span>
+    <div class="logo">
+      <svg class="icon">
+        <use xlink:href="#icon-alien" />
+      </svg>
     </div>
+    <ul class="menu">
+      <li>菜单1</li>
+      <li>菜单2</li>
+    </ul>
+    <span class="toggleAside" @click="toggleAside"></span>
+  </div>
 </template>
 <script lang="ts">
-import { inject, Ref } from 'vue'
-  export default {
-    setup() {
-      const asideVisible = inject<Ref<boolean>>('aside') //get
-      console.log(asideVisible.value,1111);
-      const toggleAside = () => {
-        asideVisible.value = !asideVisible.value
-      }
-      return {toggleAside}
-    }
+import { inject, Ref } from "vue";
+export default {
+  setup() {
+    const asideVisible = inject<Ref<boolean>>("aside"); //get
+    console.log(asideVisible.value, 1111);
+    const toggleAside = () => {
+      asideVisible.value = !asideVisible.value;
+    };
+    return { toggleAside };
   }
+};
 </script>
 <style lang="scss" scoped>
-  .topnav {
+.topnav {
   display: flex;
   position: fixed;
   top: 0;
@@ -35,6 +39,10 @@ import { inject, Ref } from 'vue'
   > .logo {
     max-width: 6em;
     margin-right: auto;
+    > svg {
+      width: 32px;
+      height: 32px;
+    }
   }
   > .menu {
     display: flex;
@@ -43,7 +51,7 @@ import { inject, Ref } from 'vue'
     > li {
       margin: 0 1em;
     }
-  }  
+  }
   > .toggleAside {
     width: 24px;
     height: 24px;
@@ -56,11 +64,15 @@ import { inject, Ref } from 'vue'
   }
 
   @media (max-width: 500px) {
-    > .menu {display: none;}
+    > .menu {
+      display: none;
+    }
     > .logo {
       margin: 0 auto;
     }
-    > .toggleAside { display: inline-block; }
+    > .toggleAside {
+      display: inline-block;
+    }
   }
 }
 </style>
