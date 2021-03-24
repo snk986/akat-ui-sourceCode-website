@@ -8,7 +8,7 @@
         <div class="gulu-tabs-nav-item"
           :class="{selected: t === selected}"
           v-for="(t,index) in titles"
-          :ref="el => { if (el) navItems[index] = el}" 
+          :ref="el => { if (t === selected) selectedItem = el}" 
           :key="index"
           @click="select(t)"
         >{{t}}</div>
@@ -65,31 +65,31 @@ export default {
       // console.log(title,555);
       context.emit('update:selected', title)
     }
-    const navItems = ref<HTMLDivElement[]>([])
+    // const navItems = ref<HTMLDivElement[]>([]) 代码优化1
+    const selectedItem = ref<HTMLDivElement>(null)
     const indicator = ref<HTMLDivElement>(null)
     const container = ref<HTMLDivElement>(null)
+    // 导航线的宽度和位置
     const navRender = () => {
-      // onMounted只在第一次渲染执行,所以代码也要放onUpdated里面，
-      // 为何onMounted也要放一次这个逻辑的代码：不放的话第一次加载导航蓝条会直接在第一个导航条，显示不正确，也无法满足导航条放在第二个的需求
-      // console.log({...navItems.value});
-      const divs = navItems.value
+      // const divs = navItems.value  代码优化1
       // classList没有代码提示，应为div的类型为any，说明ts并不知道div是一个元素,加了ts泛型写法<HTMLDivElement[]>后，就会有提示
-      const result = divs.filter(div => div.classList.contains('selected'))[0]
+      // const result = divs.filter(div => div.classList.contains('selected'))[0]   代码优化1
       // const result = divs.find(div => div.classList.contains('selected')) find写法低版本，浏览器不支持
-      // console.log(result);
-      const { width } = result.getBoundingClientRect()
+      const { width } = selectedItem.value.getBoundingClientRect() 
       indicator.value.style.width = width + 'px'   
       const { left:left1 } = container.value.getBoundingClientRect()
-      const { left:left2 } = result.getBoundingClientRect()
+      const { left:left2 } = selectedItem.value.getBoundingClientRect()
       const left = left2 - left1
       indicator.value.style.left = left + 'px'
     }
+    // onMounted只在第一次渲染执行,所以代码也要放onUpdated里面，
+    // 为何onMounted也要放一次这个逻辑的代码：不放的话第一次加载导航蓝条会直接在第一个导航条，显示不正确，也无法满足导航条放在第二个的需求
     // @ts-ignore
     onMounted(navRender)
     // @ts-ignore
     onUpdated(navRender)
     return {
-      defaults, titles, current, select, navItems, indicator, container
+      defaults, titles, current, select, selectedItem, indicator, container
     }
   }
 }
