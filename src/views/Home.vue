@@ -38,6 +38,10 @@ $border-radius: 4px;
     rgba(167, 193, 162, 1) 64%,
     rgba(164, 189, 159, 1) 100%
   );
+  // 圆弧第一种方案
+  // border-bottom-left-radius: 50% 40px;
+  // border-bottom-right-radius: 50% 40px;
+  clip-path: ellipse(80% 60% at 50% 40%);
 }
 .banner {
   padding: 100px 0;
