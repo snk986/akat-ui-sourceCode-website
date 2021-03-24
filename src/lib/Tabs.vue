@@ -17,11 +17,15 @@
     <div class="gulu-tabs-content">
       <!-- v-for与v-if官方不推荐一起使用 -->
       <!-- <component class="gulu-tabs-content-item" v-for="(c,index) in defaults" v-if="c.props.title === selected" :is="c" :key="index" /> -->
-      <!-- <component class="gulu-tabs-content-item" :is="current" /> -->
-      <component class="gulu-tabs-content-item"
+
+      <!-- 遗留bug解决与简单代码实现导航切换 -->
+      <component class="gulu-tabs-content-item" :is="current" :key="current.props.title"/>
+
+      <!-- 通过css来改变内容区的内容 -->
+      <!-- <component class="gulu-tabs-content-item"
         :class="{selected: c.props.title === selected}"
         v-for="(c,index) in defaults" :is="c" :key="index" 
-      />
+      /> -->
       <!-- {{current}} -->
     </div>
   </div>
@@ -62,7 +66,6 @@ export default {
     })
     // 点击导航切换
     const select = (title: string) => {
-      // console.log(title,555);
       context.emit('update:selected', title)
     }
     // const navItems = ref<HTMLDivElement[]>([]) 代码优化1
@@ -76,7 +79,7 @@ export default {
       // const result = divs.filter(div => div.classList.contains('selected'))[0]   代码优化1
       // const result = divs.find(div => div.classList.contains('selected')) find写法低版本，浏览器不支持
       const { width } = selectedItem.value.getBoundingClientRect() 
-      indicator.value.style.width = width + 'px'   
+      indicator.value.style.width = width + 'px'  
       const { left:left1 } = container.value.getBoundingClientRect()
       const { left:left2 } = selectedItem.value.getBoundingClientRect()
       const left = left2 - left1
@@ -85,14 +88,13 @@ export default {
     // onMounted只在第一次渲染执行,所以代码也要放onUpdated里面，
     // 为何onMounted也要放一次这个逻辑的代码：不放的话第一次加载导航蓝条会直接在第一个导航条，显示不正确，也无法满足导航条放在第二个的需求
     // @ts-ignore
-    // onMounted(navRender)  //第一次执行
+    onMounted(navRender)  //第一次执行
     // @ts-ignore
-    // onUpdated(navRender)  //后面执行 可以合并成watchEffect
-    // @ts-ignore 
-    // watchEffect(navRender)
-    onMounted(() => {
-      watchEffect(navRender)
-    }) 
+    onUpdated(navRender)  //后面执行 
+    // 下面这种方法只能配合css改变div的left来使用
+    // onMounted(() => {
+    //   watchEffect(navRender)
+    // }) 
     return {
       defaults, titles, current, select, selectedItem, indicator, container
     }
@@ -130,15 +132,18 @@ $border-color: #d9d9d9;
       transition: all 250ms;
     }
   }
+  // 通过css来改变内容区的内容
+  // &-content {
+  //   padding: 8px 0;
+  //   &-item{
+  //     display: none;
+  //     &.selected{
+  //       display: block;
+  //     }
+  //   }
+  // }
   &-content {
     padding: 8px 0;
-    &-item{
-      display: none;
-      &.selected{
-        display: block;
-      }
-    }
   }
-
 }
 </style>
