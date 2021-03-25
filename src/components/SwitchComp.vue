@@ -4,7 +4,8 @@
     <div class="demo">
       <h2>常规用法</h2>
       <div class="demo-component">
-        <Switch1Demo />
+        <!-- <Switch1Demo /> -->
+        <component :is="Switch1Demo"/>
       </div>
       <div class="demo-actions">
         <Button>查看代码</Button>
@@ -16,7 +17,8 @@
     <div class="demo">
       <h2>支持 disabled </h2>
       <div class="demo-component">
-        <Switch2Demo />
+        <!-- <Switch2Demo /> -->
+        <component :is="Switch2Demo"/>
       </div>
       <div class="demo-actions">
         <Button>查看代码</Button>
@@ -39,8 +41,6 @@
     components: { 
       Switch,
       Button,
-      Switch1Demo,
-      Switch2Demo 
     },
     setup() {
       const checked = ref(false)
