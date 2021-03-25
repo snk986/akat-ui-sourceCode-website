@@ -10,19 +10,19 @@
         <Button>查看代码</Button>
       </div>
       <div class="demo-code">
-        <pre>&lt;Switch v-model:value="checked" /&gt;</pre>
+        <pre>{{Switch1Demo.__sourceCode}}</pre>
       </div>
     </div>
     <div class="demo">
       <h2>支持 disabled </h2>
       <div class="demo-component">
-        <Switch2Demo/>
+        <Switch2Demo />
       </div>
       <div class="demo-actions">
         <Button>查看代码</Button>
       </div>
       <div class="demo-code">
-        <pre>&lt;Switch v-model:value="checked" disabled /&gt;</pre>
+        <pre>{{Switch2Demo.__sourceCode}}</pre>
       </div>
     </div>
   </div>
@@ -33,6 +33,8 @@
   import Switch1Demo from './Switch1.demo.vue'
   import Switch2Demo from './Switch2.demo.vue'
   import { ref } from 'vue'
+  // console.log(Switch1Demo.__sourceCode);
+  
   export default {
     components: { 
       Switch,
@@ -42,7 +44,7 @@
     },
     setup() {
       const checked = ref(false)
-      return {checked}
+      return {checked, Switch1Demo, Switch2Demo}
     }  
   }
 </script> 
