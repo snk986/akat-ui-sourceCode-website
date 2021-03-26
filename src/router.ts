@@ -7,7 +7,13 @@ import  DialogComp  from './components/DialogComp.vue';
 import  TabsComp  from './components/TabsComp.vue';
 import { h } from "vue";
 import Markdown from './components/Markdown.vue'
-const md = filename => h(Markdown, {path:`../markdown/${filename}.md`, key: filename})
+import intro from './markdown/intro.md'
+import install from './markdown/install.md'
+import getStarted from './markdown/getStarted.md'
+const md = (string, key) => h(Markdown, {content: string, key})
+
+// build之后不加载md文件，因为rollup不支持import()时拼接字符串
+// const md = filename => h(Markdown, {path:`../markdown/${filename}.md`, key: filename})
 
 const history = createWebHashHistory()
 export const router = createRouter({
@@ -17,9 +23,9 @@ export const router = createRouter({
     {path: '/doc', component: Doc,
       children: [
         {path: '', redirect: '/doc/intro'},
-        {path: 'intro', component: md('intro')},
-        {path: 'install', component: md('install')},
-        {path: 'get-started', component: md('getStarted')},
+        {path: 'intro', component: md(intro,'intro')},
+        {path: 'install', component: md(install, 'install')},
+        {path: 'get-started', component: md(getStarted, 'getStarted')},
         {path: 'switch', component: SwitchComp},
         {path: 'button', component: ButtonComp},
         {path: 'dialog', component: DialogComp},
