@@ -1,40 +1,54 @@
 <demo>
-一键打开 Dialog
+点击遮罩层无法关闭
 </demo>
 <template>
 <div>
-  <Button @click="showDialog">打开对话框</Button>
+  <Button @click="toggle">打开对话框</Button>
+  <Dialog 
+    v-model:visible="x" 
+    :closeOnClickOverlay="false" 
+    :ok="f1" 
+    :cancel="f2"
+  >
+    <template v-slot:content>
+      <strong>hi</strong>
+      <div>hi2</div>
+    </template>
+    <template v-slot:title>
+      <strong>加粗的标题</strong>
+    </template>
+  </Dialog>
 </div>
 </template>
 
 <script lang="ts">
+import Dialog from '../lib/Dialog.vue'
 import Button from '../lib/Button.vue'
 import {
-  ref,
-  h
+  ref
 } from 'vue'
 import {
   openDialog
 } from '../lib/openDialog'
 export default {
   components: {
+    Dialog,
     Button
   },
   setup() {
-    const showDialog = () => {
-      openDialog({
-        title: h('strong', {}, '标题'),
-        content: '你好',
-        ok() {
-          console.log('ok')
-        },
-        cancel() {
-          console.log('cancel')
-        }
-      })
+    const x = ref(false)
+    const toggle = () => {
+      x.value = !x.value
     }
+    const f1 = () => {
+      return false
+    }
+    const f2 = () => {}
     return {
-      showDialog
+      x,
+      toggle,
+      f1,
+      f2
     }
   }
 }

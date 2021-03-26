@@ -2,6 +2,7 @@
   <h1>Dialog 示例</h1>
   <Demo :component="Dialog1Demo" />
   <Demo :component="Dialog2Demo" />
+  <Demo :component="Dialog3Demo" />
   <!-- <h1>示例1</h1>
   <div style="position:relative; z-index:1">
     <Button @click="toggle">toggle</Button> -->
@@ -41,6 +42,7 @@
 import Demo from './Demo.vue';
 import Dialog1Demo from './Dialog1.demo.vue';
 import Dialog2Demo from './Dialog2.demo.vue';
+import Dialog3Demo from './Dialog3.demo.vue';
 
 export default {
   components: { 
@@ -76,7 +78,8 @@ export default {
     // return { x , toggle, showDialog, fn1, fn2 }
     return { 
       Dialog1Demo,
-      Dialog2Demo 
+      Dialog2Demo,
+      Dialog3Demo 
     }
     
   }
