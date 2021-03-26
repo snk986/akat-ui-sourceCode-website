@@ -9,12 +9,17 @@
 import { ref } from "vue";
 export default {
   props: {
-    value: Boolean
+    value: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     console.log(props.value, 111);
 
     const toggle = () => {
+      if(props.disabled) return
       context.emit("update:value", !props.value);
       // this.$emit()
     };
