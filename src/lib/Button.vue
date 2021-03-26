@@ -1,18 +1,17 @@
 <template>
-<!-- <div> -->
+    <button class="gulu-button"
+      :class="classes"
+      :disabled="disabled"
+    >
+    <!-- 打包后所有按钮的点击事件都不生效：Vue会自动把事件绑定在根元素，因为HTML中的注释也是一种node，所以事件自动绑定到第一行的注释上了 -->
     <!-- <button class="gulu-button"
       :class="classes"
       :disabled="disabled"
       v-bind="$attrs"
     > -->
-    <button class="gulu-button"
-      :class="classes"
-      :disabled="disabled"
-    >
     <span class="gulu-loadingIndicator" v-if="loading"></span>
       <slot />
     </button>
-  <!-- </div> -->
 </template>
 <script lang="ts">
 import { computed } from 'vue'
