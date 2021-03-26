@@ -12,9 +12,6 @@ import install from './markdown/install.md'
 import getStarted from './markdown/getStarted.md'
 const md = (string, key) => h(Markdown, {content: string, key})
 
-// build之后不加载md文件，因为rollup不支持import()时拼接字符串
-// const md = filename => h(Markdown, {path:`../markdown/${filename}.md`, key: filename})
-
 const history = createWebHashHistory()
 export const router = createRouter({
   history,

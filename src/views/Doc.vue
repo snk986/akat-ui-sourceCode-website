@@ -43,8 +43,7 @@ import { inject, Ref } from "vue";
 export default {
   components: { Topnav },
   setup() {
-    const asideVisible = inject<Ref<boolean>>("aside"); //get
-    console.log(asideVisible.value, 2222);
+    const asideVisible = inject<Ref<boolean>>("aside");
     return { asideVisible };
   }
 };
@@ -55,7 +54,6 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;  
-  // vh：1vh等于视口高度的1%
   > .nav {
     flex-shrink: 0;
   }

@@ -3,12 +3,6 @@
       :class="classes"
       :disabled="disabled"
     >
-    <!-- 打包后所有按钮的点击事件都不生效：Vue会自动把事件绑定在根元素，因为HTML中的注释也是一种node，所以事件自动绑定到第一行的注释上了 -->
-    <!-- <button class="gulu-button"
-      :class="classes"
-      :disabled="disabled"
-      v-bind="$attrs"
-    > -->
     <span class="gulu-loadingIndicator" v-if="loading"></span>
       <slot />
     </button>
@@ -16,14 +10,6 @@
 <script lang="ts">
 import { computed } from 'vue'
 export default {
-  // vu3属性绑定：1、默认所有属性都绑定到根元素；2、使用inheritAttrs: false,取消默认绑定；3、使用$attrs或者context.attrs获取所有属性
-  // 4、使用v-bind="$attrs"批量绑定属性 5、使用const {size, ...rest} = context.attrs将属性分开
-
-  // inheritAttrs: false, //2、使用inheritAttrs: false,取消默认绑定；
-
-  // props vs attrs 区别
-  // 1、props要先声明才能取值，attrs不用先声明。2、props不包含事件，attrs包含。 3、props支持string以外的类型，attrs只有string类型
-  // 4、props没有声明的属性，会自动跑到attrs里
   props:{
     theme: {
       type: String,
@@ -49,7 +35,6 @@ export default {
   setup(props) {
     const {theme, size, level} = props
     const classes = computed(() => {
-      // 这句话作用：对象里[]是key，:后面是value，如果theme是未定义的，key就失效，那么返回空对象，反之，返回key
       return {
         [`gulu-theme-${theme}`]: theme,
         [`gulu-size-${size}`]: size,
@@ -62,9 +47,6 @@ export default {
 </script>
 
 <style lang="scss">
-// UI库的css注意事项
-// 1、不能使用scoped，因为data-v-xxx每次运行可能不同，必须输出稳定不变的class选择器，方便使用者覆盖
-// 2、必须加前缀，.button、.theme-link不行，容易被使用者覆盖；.gulu-button、.gulu-theme-link可以，不容易覆盖
 $h: 16px;
 $border-color: #d9d9d9;
 $color: #333;
@@ -78,7 +60,7 @@ $grey: grey;
   height: $h*2;
   padding: 0 12px;
   cursor: pointer;
-  white-space: nowrap; //	文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+  white-space: nowrap; 
   background: white;
   color: $color;
   border: 1px solid $border-color;

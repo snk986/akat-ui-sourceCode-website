@@ -1,6 +1,5 @@
 <template>
   <template v-if="visible">
-    <!-- 把dialog组件用内置Teleport组件直接挂到body下面，相当于传送门，防止dialog因为css层级关系的bug被覆盖 -->
     <Teleport to="body">
       <div class="gulu-dialog-overlay" @click="clickOnOverlay"></div>
       <div class="gulu-dialog-wrapper">
@@ -51,7 +50,6 @@ export default {
       }
     }
     const confirm = () => {
-      // js最新语法：可选链 props.confirm?.() !== false
       if(props.confirm && props.confirm() !== false) {
         close()
       }

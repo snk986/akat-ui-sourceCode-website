@@ -2,7 +2,6 @@
   <div class="demo">
     <h2>{{component.__sourceCodeTitle}}</h2>
       <div class="demo-component">
-        <!-- <Switch1Demo /> -->
         <component :is="component"/>
       </div>
       <div class="demo-actions">
@@ -56,7 +55,6 @@ $border-color: #d9d9d9;
   &-code {
     padding: 8px 16px;
     border-top: 1px dashed $border-color;
-    // 手机端源码展示宽度溢出出现横向滚动条bug修复
     width: calc(100vw - 34px);
     >pre {
       line-height: 1.1;

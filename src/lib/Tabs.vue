@@ -40,44 +40,27 @@ export default {
     }
   },
   setup(props, context) {
-    // 第一步
-    // console.log({...context.slots.default()[0]});
-    // console.log({...context.slots.default()[1]});
-    // 第二步
     const defaults = context.slots.default()
-    // 每一个Tab.vue组件最终会导出为一个对象
-    // console.log(defaults[0].type === Tab);
     defaults.map((tag) => {
       if(tag.type !== Tab){
         throw new Error('Tabs组件的子标签必须是Tab')
       }
     })
-    // 当前选中组件：setup只会在页面挂载的时候初始化一遍，意味着所有函数都只执行一遍，所有属性都只计算一遍，
-    // 所以要引入计算函数computed，每次点击的时候对current重新计算
     const current = computed(() => {
-      // console.log('重新return');
       return defaults.filter((tag) => {
         return tag.props.title === props.selected
       })[0]
     }) 
-    // 所有标题
     const titles = defaults.map((tag) => {
       return tag.props.title
     })
-    // 点击导航切换
     const select = (title: string) => {
       context.emit('update:selected', title)
     }
-    // const navItems = ref<HTMLDivElement[]>([]) 代码优化1
     const selectedItem = ref<HTMLDivElement>(null)
     const indicator = ref<HTMLDivElement>(null)
     const container = ref<HTMLDivElement>(null)
-    // 导航线的宽度和位置
     const navRender = () => {
-      // const divs = navItems.value  代码优化1
-      // classList没有代码提示，应为div的类型为any，说明ts并不知道div是一个元素,加了ts泛型写法<HTMLDivElement[]>后，就会有提示
-      // const result = divs.filter(div => div.classList.contains('selected'))[0]   代码优化1
-      // const result = divs.find(div => div.classList.contains('selected')) find写法低版本，浏览器不支持
       const { width } = selectedItem.value.getBoundingClientRect() 
       indicator.value.style.width = width + 'px'  
       const { left:left1 } = container.value.getBoundingClientRect()
@@ -85,16 +68,10 @@ export default {
       const left = left2 - left1
       indicator.value.style.left = left + 'px'
     }
-    // onMounted只在第一次渲染执行,所以代码也要放onUpdated里面，
-    // 为何onMounted也要放一次这个逻辑的代码：不放的话第一次加载导航蓝条会直接在第一个导航条，显示不正确，也无法满足导航条放在第二个的需求
     // @ts-ignore
-    onMounted(navRender)  //第一次执行
+    onMounted(navRender)  
     // @ts-ignore
-    onUpdated(navRender)  //后面执行 
-    // 下面这种方法只能配合css改变div的left来使用
-    // onMounted(() => {
-    //   watchEffect(navRender)
-    // }) 
+    onUpdated(navRender)  
     return {
       defaults, titles, current, select, selectedItem, indicator, container
     }
