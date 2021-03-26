@@ -15,3 +15,8 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+  .markdown-body pre{
+    width: calc(100vw - 32px);
+  }
+</style>
