@@ -4,6 +4,8 @@ import fs from 'fs'
 import {baseParse} from '@vue/compiler-core'
 
 export default {
+  base: './',   // base: '/akat-ui-website/', 前面是简写
+  assetsDir: 'assets',
   plugins: [md()],
   vueCustomBlockTransforms: {
     demo: (options) => {
