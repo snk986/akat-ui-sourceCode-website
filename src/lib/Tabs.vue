@@ -41,8 +41,12 @@ export default {
   },
   setup(props, context) {
     const defaults = context.slots.default()
+    console.log(Tab,'Tab');
     defaults.map((tag) => {
-      if(tag.type !== Tab){
+      console.log(tag.type,'tag.type');
+      // @ts-ignore
+      // if(tag.type.name !== Tab.name){ 如果build报错就用name来判断
+      if(tag.type !== Tab){ 
         throw new Error('Tabs组件的子标签必须是Tab')
       }
     })
