@@ -1,8 +1,4 @@
 <template>
-    <!-- {{defaults[0]}} ++++  第二步
-    {{defaults[1]}} -->
-    <!-- <component :is="defaults[0]" />
-    <component :is="defaults[1]" /> -->
     <div class="gulu-tabs">
       <div class="gulu-tabs-nav" ref="container">
         <div class="gulu-tabs-nav-item"
@@ -15,18 +11,7 @@
         <div class="gulu-tabs-nav-indicator" ref="indicator"></div>
       </div>
     <div class="gulu-tabs-content">
-      <!-- v-for与v-if官方不推荐一起使用 -->
-      <!-- <component class="gulu-tabs-content-item" v-for="(c,index) in defaults" v-if="c.props.title === selected" :is="c" :key="index" /> -->
-
-      <!-- 遗留bug解决与简单代码实现导航切换 -->
       <component class="gulu-tabs-content-item" :is="current" :key="current.props.title"/>
-
-      <!-- 通过css来改变内容区的内容 -->
-      <!-- <component class="gulu-tabs-content-item"
-        :class="{selected: c.props.title === selected}"
-        v-for="(c,index) in defaults" :is="c" :key="index" 
-      /> -->
-      <!-- {{current}} -->
     </div>
   </div>
 </template>
@@ -72,10 +57,13 @@ export default {
       const left = left2 - left1
       indicator.value.style.left = left + 'px'
     }
+    // @ts-ignore  如果watchEffect导致组件更新不正确，用上面的API
+    // onMounted(navRender) 
     // @ts-ignore
-    onMounted(navRender)  
-    // @ts-ignore
-    onUpdated(navRender)  
+    // onUpdated(navRender)
+    onMounted(() => {
+      watchEffect(navRender, {flush: 'post'})
+    })   
     return {
       defaults, titles, current, select, selectedItem, indicator, container
     }
