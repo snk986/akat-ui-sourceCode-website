@@ -4,7 +4,7 @@
 然后在你的代码中写入下面的代码
 
 ```
-import {Button, Tabs, Switch, Dialog} from "king-ui"
+import {Button, Tabs, Tab, Switch, Dialog, openDialog} from "akat-ui"
 ```
 就可以使用我提供的组件了。
 
@@ -17,9 +17,9 @@ import {Button, Tabs, Switch, Dialog} from "king-ui"
   <div><Button>按钮</Button></div>
 </template>
 <script>
-  import {Button, Tabs, Switch, Dialog} from "king-ui"
+  import {Button, Tabs, Tab, Switch, Dialog, openDialog} from "akat-ui"
   export default {
-    components: {Button}
+    components: {Button, Tabs, Tab, Switch, Dialog}
   }
 </script>
 ```

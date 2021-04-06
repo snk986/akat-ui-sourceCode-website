@@ -1,7 +1,9 @@
 {
   "name": "akat-ui",
   "version": "0.0.1",
-  "files": ["dist/lib/*"],
+  "files": [
+    "dist/lib/*"
+  ],
   "main": "dist/lib/akat.js",
   "scripts": {
     "dev": "vite",
@@ -12,7 +14,10 @@
   },
   "dependencies": {
     "github-markdown-css": "4.0.0",
-    "marked": "1.1.1"
+    "marked": "1.1.1",
+    "prismjs": "1.21.0",
+    "vue": "3.0.0",
+    "vue-router": "4.0.0-beta.3"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "3.0.0-rc.1",
