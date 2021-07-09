@@ -5,7 +5,7 @@
       <h1>咕噜UI</h1>
       <h2>一个学习的UI框架</h2>
       <p class="actions">
-        <a>GitHub</a>
+        <a href="https://github.com/snk986/akat-ui-sourceCode-website">GitHub</a>
         <router-link to="/doc">开始</router-link>
       </p>
     </div>
